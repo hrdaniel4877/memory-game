@@ -1,0 +1,11 @@
+/*general styles*/
+html *
+{
+   font-family: 'Roboto', sans-serif;
+   color: #2d3c49;
+}
+
+body
+{
+	background-color: #CAE8FF;
+}
