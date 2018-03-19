@@ -10,7 +10,7 @@ body
 	background-color: #CAE8FF;
 }
 
-.cards
+.table
 {
 	display: grid;
 	grid-template-columns: 75px 75px 75px 75px;
