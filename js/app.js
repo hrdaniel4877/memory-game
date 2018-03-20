@@ -37,13 +37,16 @@ const cards = [
 	},		
 ];
 
+const cardsDeck = document.getElementById('cardsDeck');
+let cardsDeckContent = '';
+
 
 // Create the cards pairs
 const cardsWithPairs = [...cards, ...cards];
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976 
-// transformed into an arrow function
+// transformed into an ES6 arrow function
 const shuffleCards = (array) => {
     let currentIndex = array.length,
         temporaryValue, randomIndex;
@@ -65,4 +68,15 @@ const cardsWithPairsShuffled = shuffleCards(cardsWithPairs);
 // Shuffled cards check
 console.log(cardsWithPairsShuffled);
 
+
+// load cards function
+let loadCards = () => {
+	for (let card in cardsWithPairsShuffled) {
+		let currentCard = `<img src='${cardsWithPairsShuffled[card].picture}'>`;
+		cardsDeckContent += currentCard;
+	}
+	cardsDeck.innerHTML = cardsDeckContent;
+};
+
+loadCards();
 

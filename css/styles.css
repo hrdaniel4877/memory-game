@@ -10,7 +10,7 @@ body
 	background-color: #CAE8FF;
 }
 
-.table
+.cardsDeck
 {
 	display: grid;
 	grid-template-columns: 75px 75px 75px 75px;
@@ -30,6 +30,12 @@ body
 	height: 100%;
 	background-color: #707887;
 	border-radius: 5px;
+}
+
+img
+{
+	max-width: 85px;
+	margin: 2px;
 }
 
 h1
