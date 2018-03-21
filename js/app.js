@@ -39,6 +39,7 @@ const cards = [
 
 const cardsDeck = document.getElementById('cardsDeck');
 const moves = document.getElementById('moves');
+const rating = document.getElementById('rating');
 let cardsDeckContent = '';
 let movesCounter = 0;
 
@@ -83,13 +84,23 @@ let loadCards = () => {
 loadCards();
 
 
-//event listener for click event on the pictures
+// event listener for click event on the pictures
 cardsDeck.addEventListener('click', (event) => {
+	// hide or show a card
 	if (event.target.tagName === 'IMG') {
 		event.target.classList.toggle('hideCard');
 	};
+	// update the counter
 	movesCounter += 1;
 	moves.textContent = `Moves: ${movesCounter}`;
+	// update the rating
+	if (movesCounter <=16) {
+		rating.textContent = `Rating: ***`;
+	} else if (movesCounter <20) {
+		rating.textContent = `Rating: **`;
+	} else {
+		rating.textContent = `Rating: *`;
+	};
 });
 
 
