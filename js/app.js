@@ -38,7 +38,9 @@ const cards = [
 ];
 
 const cardsDeck = document.getElementById('cardsDeck');
+const moves = document.getElementById('moves');
 let cardsDeckContent = '';
+let movesCounter = 0;
 
 
 // Create the cards pairs
@@ -86,6 +88,9 @@ cardsDeck.addEventListener('click', (event) => {
 	if (event.target.tagName === 'IMG') {
 		event.target.classList.toggle('hideCard');
 	};
+	movesCounter += 1;
+	console.log(movesCounter);
+	moves.textContent = `Moves: ${movesCounter}`;
 });
 
 
