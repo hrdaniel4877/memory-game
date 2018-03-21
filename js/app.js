@@ -89,7 +89,6 @@ cardsDeck.addEventListener('click', (event) => {
 		event.target.classList.toggle('hideCard');
 	};
 	movesCounter += 1;
-	console.log(movesCounter);
 	moves.textContent = `Moves: ${movesCounter}`;
 });
 
