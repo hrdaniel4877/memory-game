@@ -10,7 +10,7 @@ body
 	background-color: #CAE8FF;
 }
 
-.cardsDeck
+#cardsDeck
 {
 	display: grid;
 	grid-template-columns: 75px 75px 75px 75px;
@@ -34,8 +34,13 @@ body
 
 img
 {
-	max-width: 85px;
-	margin: 2px;
+	height: 95%;
+	padding: 2px;
+}
+
+.hideCard
+{
+	opacity:0;
 }
 
 h1

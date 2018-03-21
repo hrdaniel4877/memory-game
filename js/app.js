@@ -72,11 +72,10 @@ console.log(cardsWithPairsShuffled);
 // load cards function
 let loadCards = () => {
 	for (let card in cardsWithPairsShuffled) {
-		let currentCard = `<img src='${cardsWithPairsShuffled[card].picture}'>`;
+		let currentCard = `<div class='card'><img src='${cardsWithPairsShuffled[card].picture}' class='hideCard'></div>`;
 		cardsDeckContent += currentCard;
 	}
 	cardsDeck.innerHTML = cardsDeckContent;
 };
 
 loadCards();
-
