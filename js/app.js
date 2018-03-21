@@ -80,3 +80,12 @@ let loadCards = () => {
 
 loadCards();
 
+
+//event listener for click event on the pictures
+cardsDeck.addEventListener('click', (event) => {
+	if (event.target.tagName === 'IMG') {
+		event.target.classList.toggle('hideCard');
+	};
+});
+
+
