@@ -40,6 +40,7 @@ const cards = [
 const cardsDeck = document.getElementById('cardsDeck');
 const moves = document.getElementById('moves');
 const rating = document.getElementById('rating');
+const restart = document.getElementById('restart');
 let cardsDeckContent = '';
 let movesCounter = 0;
 
@@ -86,21 +87,31 @@ loadCards();
 
 // event listener for click event on the pictures
 cardsDeck.addEventListener('click', (event) => {
+	
 	// hide or show a card
 	if (event.target.tagName === 'IMG') {
 		event.target.classList.toggle('hideCard');
 	};
+	
 	// update the counter
 	movesCounter += 1;
 	moves.textContent = `Moves: ${movesCounter}`;
+	
 	// update the rating
 	if (movesCounter <=16) {
 		rating.textContent = `Rating: ***`;
-	} else if (movesCounter <20) {
+	} else if (movesCounter <32) {
 		rating.textContent = `Rating: **`;
 	} else {
 		rating.textContent = `Rating: *`;
 	};
+});
+
+
+// event listener for "Restart" button to restart the game
+restart.addEventListener('click', (event) => {
+	event.preventDefault();
+	window.location.reload(true);
 });
 
 
