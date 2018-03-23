@@ -19,7 +19,7 @@ body
 	grid-row-gap: 5px;
 	align-items: center;
 	justify-content: center;
-	width: 90%;
+	width: 315px;
 	margin: auto;
 	background-color: #aaE888
 }
@@ -41,6 +41,11 @@ img
 .hideCard
 {
 	opacity:0;
+}
+
+.showCard
+{
+	opacity:1;
 }
 
 h1

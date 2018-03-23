@@ -43,6 +43,7 @@ const rating = document.getElementById('rating');
 const restart = document.getElementById('restart');
 let cardsDeckContent = '';
 let movesCounter = 0;
+let pairs = [];
 
 
 // Create the cards pairs
@@ -82,31 +83,50 @@ let loadCards = () => {
 	cardsDeck.innerHTML = cardsDeckContent;
 };
 
+
+// start the game
 loadCards();
 
 
-// event listener for click event on the pictures
+// event listener for click event on the cards
 cardsDeck.addEventListener('click', (event) => {
 	
-	// hide or show a card
+	// if an actual image was clicked do these:
 	if (event.target.tagName === 'IMG') {
-		event.target.classList.toggle('hideCard');
-	};
-	
-	// update the counter
-	movesCounter += 1;
-	moves.textContent = `Moves: ${movesCounter}`;
-	
-	// update the rating
-	if (movesCounter <=16) {
-		rating.textContent = `Rating: ***`;
-	} else if (movesCounter <32) {
-		rating.textContent = `Rating: **`;
-	} else {
-		rating.textContent = `Rating: *`;
-	};
+		
+		// show card
+		event.target.classList.remove('hideCard');
+		event.target.classList.add('showCard');
+		
+		// add card's src to the pairs array
+		pairs.push(event.target.getAttribute('src'));
+
+		// update the counter
+		movesCounter += 1;
+		moves.textContent = `Moves: ${movesCounter}`;
+
+		// update the rating
+		if (movesCounter <=16) {
+			rating.textContent = `Rating: ***`;
+		} else if (movesCounter <32) {
+			rating.textContent = `Rating: **`;
+		} else {
+			rating.textContent = `Rating: *`;
+		};
+
+		// call compare function if we have 2 elements revealed
+		if (pairs.length === 2) {
+			compareCards();
+		};
+	};	
 });
 
+// compare cards function
+let compareCards = () => {
+	console.log('We have 2 cards to compare! ', pairs);
+	pairs.pop();
+	pairs.pop();
+};
 
 // event listener for "Restart" button to restart the game
 restart.addEventListener('click', (event) => {
