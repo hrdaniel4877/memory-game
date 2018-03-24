@@ -136,8 +136,9 @@ cardsDeck.addEventListener('click', (event) => {
 
 
 // Count the time in seconds and minutes, after the first move was made
+let timerCounter;
 let timerFunction = () => {
-	const timerCounter = setInterval(() => {
+	timerCounter = setInterval(() => {
 		secondsCounter += 1;
 		if (secondsCounter === 60) {
 			minutesCounter += 1;
@@ -173,6 +174,7 @@ let compareCards = () => {
 	};
 	pairs.pop();
 	pairs.pop();
+	winningModal();
 };
 
 
@@ -183,3 +185,11 @@ restart.addEventListener('click', (event) => {
 });
 
 
+// Winning Modal
+const winningModal = () => {
+	let matchedCards = document.getElementsByClassName('match');
+	if (matchedCards.length === 16) {
+		clearInterval(timerCounter);
+		console.log(`Game Over! Time: ${minutesCounter} : ${secondsCounter}`);
+	};
+};
