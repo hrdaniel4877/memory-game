@@ -37,12 +37,17 @@ const cards = [
 	},		
 ];
 
+
+// all the other variables used in the game
 const cardsDeck = document.getElementById('cardsDeck');
 const moves = document.getElementById('moves');
+const time = document.getElementById('timer');
 const rating = document.getElementById('rating');
 const restart = document.getElementById('restart');
 let cardsDeckContent = '';
 let movesCounter = 0;
+let secondsCounter = 0;
+let minutesCounter = 0;
 let pairs = [];
 let eventPause = 0;
 
@@ -85,19 +90,20 @@ let loadCards = () => {
 };
 
 
-// start the game
+// initialize the game with new shuffled cards
 loadCards();
 
 
-// event listener for click event on the cards
+// start the game when a card is clicked
 cardsDeck.addEventListener('click', (event) => {
 
-	// if an actual image was clicked AND has no and 'showCard' and 'match' class, do these:
+	// if an actual image was clicked AND has no 'showCard' and 'match' class, do these:
 	if (event.target.tagName === 'IMG' &&
 		!event.target.classList.contains('showCard') &&
 		!event.target.classList.contains('match') &&
 		eventPause < 2) {
 		
+		// variable to prevent showing more than 2 cards at the time
 		eventPause +=1;
 
 		// show card
@@ -106,12 +112,14 @@ cardsDeck.addEventListener('click', (event) => {
 		// add card's src to the pairs array
 		pairs.push(event.target.getAttribute('src'));
 
-		// update the counter
+		// update the moves counter
 		movesCounter += 1;
 		moves.textContent = `Moves: ${movesCounter}`;
 
-		// update the rating
-		if (movesCounter <=16) {
+		// start the timer at the first move and update the rating
+		if (movesCounter === 1) {
+			timerFunction();
+		} else if (movesCounter <=16) {
 			rating.textContent = `Rating: ***`;
 		} else if (movesCounter <32) {
 			rating.textContent = `Rating: **`;
@@ -126,12 +134,27 @@ cardsDeck.addEventListener('click', (event) => {
 	};	
 });
 
-// compare cards function
+
+// Count the time in seconds and minutes, after the first move was made
+let timerFunction = () => {
+	const timerCounter = setInterval(() => {
+		secondsCounter += 1;
+		if (secondsCounter === 60) {
+			minutesCounter += 1;
+			secondsCounter = 0;
+		};	
+		time.innerText = `Time: ${minutesCounter}:${secondsCounter}`;
+	}
+	, 1000);
+};
+
+
+// Compare the revealed pair of cards; keep if they match; flip back otherwise
 let compareCards = () => {
 	console.log('We have 2 cards to compare! ', pairs);
 	if (pairs[0] === pairs[1]) {
 		console.log('Match!');
-		// replace 'showCard' class with 'match'; this will keep the cards open and un-clickable the second time
+		// keep the cards revealed if they match
 		let openCards = document.getElementsByClassName('showCard');
 		openCards[1].classList.replace('showCard', 'match');
 		openCards[0].classList.replace('showCard', 'match');
@@ -139,21 +162,21 @@ let compareCards = () => {
 	} else {
 		console.log('Unmatch');
 		// flip back the cards after 1 second
-		setTimeout(
-			()=>{
+		setTimeout(()=>{
 				let openCards = document.getElementsByClassName('showCard');
 				openCards[1].classList.replace('showCard', 'hideCard');
 				openCards[0].classList.replace('showCard', 'hideCard');
 				eventPause = 0;
 			},
-			600
+			1000
 		);
 	};
 	pairs.pop();
 	pairs.pop();
 };
 
-// event listener for "Restart" button to restart the game
+
+// restart the game when the 'Restart' button is clicked
 restart.addEventListener('click', (event) => {
 	event.preventDefault();
 	window.location.reload(true);
