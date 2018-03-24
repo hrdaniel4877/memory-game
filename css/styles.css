@@ -43,7 +43,8 @@ img
 	opacity:0;
 }
 
-.showCard
+.showCard,
+.match
 {
 	opacity:1;
 }

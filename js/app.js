@@ -91,12 +91,12 @@ loadCards();
 // event listener for click event on the cards
 cardsDeck.addEventListener('click', (event) => {
 	
-	// if an actual image was clicked do these:
-	if (event.target.tagName === 'IMG') {
+	// if an actual image was clicked AND has no 'match' class, do these:
+	if (event.target.tagName === 'IMG' &&
+		!event.target.classList.contains('match')) {
 		
 		// show card
-		event.target.classList.remove('hideCard');
-		event.target.classList.add('showCard');
+		event.target.classList.replace('hideCard', 'showCard');
 		
 		// add card's src to the pairs array
 		pairs.push(event.target.getAttribute('src'));
@@ -124,6 +124,24 @@ cardsDeck.addEventListener('click', (event) => {
 // compare cards function
 let compareCards = () => {
 	console.log('We have 2 cards to compare! ', pairs);
+	if (pairs[0] === pairs[1]) {
+		console.log('Match!');
+		// replace 'showCard' class with 'match'; this will keep the cards open and un-clickable the second time
+		let openCards = document.getElementsByClassName('showCard');
+		openCards[1].classList.replace('showCard', 'match');
+		openCards[0].classList.replace('showCard', 'match');
+	} else {
+		console.log('Unmatch');
+		// flip back the cards after 1 second
+		setTimeout(
+			()=>{
+				let openCards = document.getElementsByClassName('showCard');
+				openCards[1].classList.replace('showCard', 'hideCard');
+				openCards[0].classList.replace('showCard', 'hideCard');
+			},
+			1000
+		);
+	};
 	pairs.pop();
 	pairs.pop();
 };
