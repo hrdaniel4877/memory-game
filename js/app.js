@@ -194,13 +194,25 @@ const winningModal = () => {
 			`<h2>Congratulations!</h2>
 			<p>Time: ${minutesCounter} : ${secondsCounter}</p>
 			<p>Star ${rating.textContent}</p>
-			<h4 id="winRestart"><a href="#">Play Again?</a></h4>`;
+			<h4 id="winRestart"><a href="#" id="restart2">Play Again?</a></h4>`;
 	modal.setAttribute('class', 'modal');
 	modal.innerHTML = modalContent;
-	if (matchedCards.length === 2) {
+	
+	// if all 16 cards are discovered, display the modal after 600 miliseconds
+	if (matchedCards.length === 4) {
 		clearInterval(timerCounter);
-		console.log(`Game Over! Time: ${minutesCounter} : ${secondsCounter}`);
-		container[0].appendChild(modal);
-	};
+		setTimeout(() => {
+			container[0].appendChild(modal);
+			let restart2 = document.getElementById('restart2');
+			
+			// add event listener for the restart game link in the modal window
+			restart2.addEventListener('click', (event) => {
+				event.preventDefault();
+				window.location.reload(true);
+			});
+		}, 
+		600);
+	};	
 };
+
 
