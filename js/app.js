@@ -157,7 +157,7 @@ const winningModal = () => {
 	modal.innerHTML = modalContent;
 	
 	// if all 16 cards are discovered, display the modal after 600 miliseconds
-	if (matchedCards.length === 4) {
+	if (matchedCards.length === 16) {
 		clearInterval(timerCounter);
 		setTimeout(() => {
 			container[0].appendChild(modal);
