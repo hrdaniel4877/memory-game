@@ -1,42 +1,14 @@
-// test
-console.log('All good!');
-
 // the array to hold all the pictures as objects:
 const cards = [
-	{
-		card: 1,
-		picture: "img/Applejack.png"
-	},
-	{
-		card: 2,
-		picture: "img/Fluttershy.png"
-	},
-	{
-		card: 3,
-		picture: "img/Princess_Celestia.png"
-	},
-	{
-		card: 4,
-		picture: "img/Princess_Luna.png"
-	},
-	{
-		card: 5,
-		picture: "img/Rainbow_Dash.png"
-	},
-	{
-		card: 6,
-		picture: "img/Rarity.png"
-	},
-	{
-		card: 7,
-		picture: "img/Spike.png"
-	},
-	{
-		card: 8,
-		picture: "img/Twilight_Sparkle.png"
-	},		
+	{picture: "img/Applejack.png"},
+	{picture: "img/Fluttershy.png"},
+	{picture: "img/Princess_Celestia.png"},
+	{picture: "img/Princess_Luna.png"},
+	{picture: "img/Rainbow_Dash.png"},
+	{picture: "img/Rarity.png"},
+	{picture: "img/Spike.png"},
+	{picture: "img/Twilight_Sparkle.png"},		
 ];
-
 
 // all the other variables used in the game
 const cardsDeck = document.getElementById('cardsDeck');
@@ -51,10 +23,8 @@ let minutesCounter = 0;
 let pairs = [];
 let eventPause = 0;
 
-
 // Create the cards pairs
 const cardsWithPairs = [...cards, ...cards];
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976 
 // transformed into an ES6 arrow function
@@ -71,28 +41,20 @@ const shuffleCards = (array) => {
     return array;
 };
 
-
 // Cards with pairs shuffled
 const cardsWithPairsShuffled = shuffleCards(cardsWithPairs);
-
-
-// Shuffled cards check
-console.log(cardsWithPairsShuffled);
-
 
 // load cards function
 let loadCards = () => {
 	for (let card in cardsWithPairsShuffled) {
 		let currentCard = `<div class='card'><img src='${cardsWithPairsShuffled[card].picture}' class='hideCard'></div>`;
 		cardsDeckContent += currentCard;
-	}
+	};
 	cardsDeck.innerHTML = cardsDeckContent;
 };
 
-
 // initialize the game with new shuffled cards
 loadCards();
-
 
 // start the game when a card is clicked
 cardsDeck.addEventListener('click', (event) => {
@@ -119,9 +81,9 @@ cardsDeck.addEventListener('click', (event) => {
 		// start the timer at the first move and update the rating
 		if (movesCounter === 1) {
 			timerFunction();
-		} else if (movesCounter <=16) {
+		} else if (movesCounter <=20) {
 			rating.textContent = `Rating: ***`;
-		} else if (movesCounter <32) {
+		} else if (movesCounter <40) {
 			rating.textContent = `Rating: **`;
 		} else {
 			rating.textContent = `Rating: *`;
@@ -133,7 +95,6 @@ cardsDeck.addEventListener('click', (event) => {
 		};
 	};	
 });
-
 
 // Count the time in seconds and minutes, after the first move was made
 let timerCounter;
@@ -148,7 +109,6 @@ let timerFunction = () => {
 	}
 	, 1000);
 };
-
 
 // Compare the revealed pair of cards; keep if they match; flip back otherwise
 let compareCards = () => {
@@ -177,15 +137,13 @@ let compareCards = () => {
 	winningModal();
 };
 
-
 // restart the game when the 'Restart' button is clicked
 restart.addEventListener('click', (event) => {
 	event.preventDefault();
 	window.location.reload(true);
 });
 
-
-// Winning Modal
+// Winning Modal; display the time, star rating and a restart button
 const winningModal = () => {
 	let container = document.getElementsByClassName('container');
 	let matchedCards = document.getElementsByClassName('match');
@@ -205,7 +163,7 @@ const winningModal = () => {
 			container[0].appendChild(modal);
 			let restart2 = document.getElementById('restart2');
 			
-			// add event listener for the restart game link in the modal window
+			// add event listener for the restart game button in the modal window
 			restart2.addEventListener('click', (event) => {
 				event.preventDefault();
 				window.location.reload(true);
@@ -214,5 +172,3 @@ const winningModal = () => {
 		600);
 	};	
 };
-
-
