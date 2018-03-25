@@ -187,9 +187,20 @@ restart.addEventListener('click', (event) => {
 
 // Winning Modal
 const winningModal = () => {
+	let container = document.getElementsByClassName('container');
 	let matchedCards = document.getElementsByClassName('match');
-	if (matchedCards.length === 16) {
+	let modal = document.createElement('div');
+	let modalContent = 
+			`<h2>Congratulations!</h2>
+			<p>Time: ${minutesCounter} : ${secondsCounter}</p>
+			<p>Star ${rating.textContent}</p>
+			<h4 id="winRestart"><a href="#">Play Again?</a></h4>`;
+	modal.setAttribute('class', 'modal');
+	modal.innerHTML = modalContent;
+	if (matchedCards.length === 2) {
 		clearInterval(timerCounter);
 		console.log(`Game Over! Time: ${minutesCounter} : ${secondsCounter}`);
+		container[0].appendChild(modal);
 	};
 };
+

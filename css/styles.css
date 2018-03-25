@@ -22,6 +22,7 @@ body
 	width: 315px;
 	margin: auto;
 	background-color: #aaE888
+	z-index: 1;
 }
 
 .card
@@ -62,4 +63,23 @@ section
 	margin-left: auto;
 	margin-right: auto;
 	width: 90%;
+}
+
+.container
+{
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+}
+
+.modal
+{
+	background-color: rgba(80, 200, 70, 0.9);
+	width: 50%;
+	height: 310px;
+	margin: 0 auto;
+	margin-top: -312px;
+	text-align: center;
+	border-radius: 5px;
+	z-index: 100;
 }
