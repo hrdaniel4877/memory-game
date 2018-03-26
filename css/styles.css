@@ -30,15 +30,14 @@ a:visited {
 #cardsDeck
 {
 	display: grid;
-	grid-template-columns: 75px 75px 75px 75px;
-	grid-template-rows: 75px 75px 75px 75px;
+	grid-template-columns: 70px 70px 70px 70px;
+	grid-template-rows: 70px 70px 70px 70px;
 	grid-column-gap: 5px;
 	grid-row-gap: 5px;
 	align-items: center;
 	justify-content: center;
-	width: 315px;
+	width: 295px;
 	margin: auto;
-	--background-color: #aaE888;
 	z-index: 1;
 }
 
@@ -86,7 +85,7 @@ section
 {
 	display: flex;
 	flex-direction: column;
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 }
 
